@@ -1,0 +1,34 @@
+# IDE и редакторы
+.vscode/
+.idea/
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+ENV/
+
+# Кеши Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Файлы окружения
+.env
+.env.local
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Отчеты тестов
+htmlcov/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+
+# Webdriver
+chromedriver.exe
+geckodriver.exe
