@@ -45,7 +45,7 @@ source .venv/bin/activate
 Активация виртуального окружения на Windows:
 
 ```sh
-venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
 Установка пакетов:
