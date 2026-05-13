@@ -5,7 +5,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import pytest
 from dotenv import load_dotenv
 from pages.admin.login_page import AdminLoginPage
-from pages.admin.main_page import AdminMainPage
 
 load_dotenv()
 
@@ -24,10 +23,13 @@ class TestAdminLogin:
         assert "некорректные данные" in error_text.lower()
 
     def test_admin_login_success(self, driver):
+        email = os.getenv("ADMIN_EMAIL")
+        password = os.getenv("ADMIN_PASSWORD")
+        if not email or not password:
+            pytest.skip("ADMIN_EMAIL или ADMIN_PASSWORD не заданы в .env")
         login_page = AdminLoginPage(driver).open()
-        login_page.enter_email(os.getenv("ADMIN_EMAIL", "admin@laratest.susu.ru"))
-        login_page.enter_password(os.getenv("ADMIN_PASSWORD", "R1j4rhnRZtC0bGi6"))
+        login_page.enter_email(email)
+        login_page.enter_password(password)
         login_page.click_login()
-        # Ждём смены URL
         login_page.wait.until(lambda d: "/admin/main" in d.current_url or "/admin" in d.current_url)
         assert "admin" in driver.current_url
